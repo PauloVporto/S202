@@ -1,0 +1,51 @@
+Atividade_2_Parte_1_Comandos 
+
+Comando para criar um container neo4j 
+docker run --restart always --publish=7474:7474 --publish=7687:7687 --env NEO4J_AUTH=none -d neo4j:5.18.0
+
+CREATE (:Pessoa:Advogado {nome: "João", sexo: "M", idade: 40})
+CREATE (:Pessoa:Engenheiro {nome: "Pedro", sexo: "M", idade: 45})
+CREATE (:Pessoa:Dentista {nome: "Maria", sexo: "F", idade: 35})
+CREATE (:Pessoa:Dentista {nome: "Melyssa", sexo: "F", idade: 38})
+CREATE (:Pessoa:Vendedor {nome: "Aluisia", sexo: "F", idade: 20})
+CREATE (:Pessoa:Vendedor {nome: "Luiz Carlos", sexo: "M", idade: 30})
+CREATE (:Pessoa:Estudante {nome: "Rafaela", sexo: "F", idade: 25})
+CREATE (:Pessoa:Dentista {nome: "Heber", sexo: "M", idade: 55})
+CREATE (:Pessoa:Engenheiro {nome: "Nilton", sexo: "F", idade: 42})
+CREATE (:Pessoa:Artista {nome: "Darlene", sexo: "M", idade: 50})
+
+MATCH (a:Pessoa {nome: "João"}), (b:Pessoa {nome: "Maria"})
+CREATE (a)-[:CASADO_COM {ano_de_casamento: 2005}]->(b)
+
+MATCH (a:Pessoa {nome: "Luiz Carlos"}), (b:Pessoa {nome: "Pedro"})
+CREATE (a)-[:PAI_DE]->(b)
+
+MATCH (a:Pessoa {nome: "Luiz Carlos"}), (b:Pessoa {nome: "Rafaela"})
+CREATE (a)-[:PAI_DE]->(b)
+
+MATCH (a:Pessoa {nome: "Maria"}), (b:Pessoa {nome: "Aluisia"})
+CREATE (a)-[:MÃE_DE]->(b)
+
+MATCH (a:Pessoa {nome: "Aluisia"}), (b:Pessoa {nome: "Pedro"})
+CREATE (a)-[:MÃE_DE]->(b)
+
+MATCH (a:Pessoa {nome: "Aluisia"}), (b:Pessoa {nome: "Rafaela"})
+CREATE (a)-[:MÃE_DE]->(b)
+
+MATCH (a:Pessoa {nome: "Maria"}), (b:Pessoa {nome: "Luiz Carlos"})
+CREATE (a)-[:IRMÃO_DE]->(b)
+
+MATCH (a:Pessoa {nome: "Pedro"}), (b:Pessoa {nome: "Rafaela"})
+CREATE (a)-[:IRMÃ_DE]->(b)
+
+MATCH (a:Pessoa {nome: "Rafaela"}), (b:Pessoa {nome: "Pedro"})
+CREATE (a)-[:IRMÃ_DE]->(b)
+
+MATCH (a:Pessoa {nome: "Rafaela"}), (b:Pessoa {nome: "Heber"})
+CREATE (a)-[:CASADO_COM {ano_de_casamento: 2010}]->(b)
+
+MATCH (a:Pessoa {nome: "Nilton"}), (b:Pessoa {nome: "Darlene"})
+CREATE (a)-[:CASADO_COM {ano_de_casamento: 2010}]->(b)
+
+MATCH (a:Pessoa {nome: "Pedro"}), (b:Pessoa {nome: "Melyssa"})
+CREATE (a)-[:NAMORADO_DE]->(b)
